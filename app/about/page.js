@@ -21,7 +21,7 @@ export default function AboutSection() {
         What is GameTracker?
       </h2>
       <p className="text-center max-w-3xl mx-auto text-gray-600 dark:text-gray-300 mb-16 text-lg">
-        GameTracker helps you keep track of the games you've played, explore new ones, and enjoy trailers
+        GameTracker helps you keep track of the games you&apos;ve played, explore new ones, and enjoy trailers
         — all in one place with a beautiful, personalized experience.
       </p>
 
