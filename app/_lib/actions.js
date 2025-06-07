@@ -17,7 +17,10 @@ export async function addGame(formData) {
     const session = await auth();
     const gameId = formData.get("gameId");
 
-    // 1. Check if this game is already added for the user
+    if(!session){
+      return;
+    }
+
     const { data: existingEntry, error: checkError } = await supabase
         .from("games")
         .select("id")  // select minimal data

@@ -35,7 +35,7 @@ export async function getGames() {
   const session = await auth();
   const userId = session?.user?.userID;
 
-  if (!userId) throw new Error("User not authenticated");
+  if (!userId) return [];
 
   const { data, error } = await supabase
     .from("games")

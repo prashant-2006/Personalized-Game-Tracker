@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import GameCard from './gameCard';
 import LoadingSpinner from '../loading';
 
-export default function SearchClient({gameList}) {
+export default function SearchClient({gameList, session}) {
   const [games, setGames] = useState([]);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,13 +53,14 @@ export default function SearchClient({gameList}) {
           Search
         </button>
       </div>
+      {!session && <p className='text-gray-500 my-4 ml-1'>Login to add games to Library</p>}
 
       {showLoader && <LoadingSpinner />}
 
       {!showLoader && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-2">
           {games.map((game) => (
-            <GameCard key={game.id} game={game} gameList={gameList} onClick={() => handleCardClick(game.id)} />
+            <GameCard key={game.id} game={game} session={session} gameList={gameList} onClick={() => handleCardClick(game.id)} />
           ))}
         </div>
       )}

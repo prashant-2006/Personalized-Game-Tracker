@@ -13,7 +13,7 @@ import { addGame, deleteGame } from '../_lib/actions';
 import { useFormStatus } from 'react-dom';
 import { useRouter } from 'next/navigation';
 
-export default function GameCard({ game, onClick, gameList }) {
+export default function GameCard({ game, onClick, gameList, session }) {
   const {
     id,
     name,
@@ -102,7 +102,7 @@ export default function GameCard({ game, onClick, gameList }) {
         )}
 
         {/* Library Button */}
-        <div onClick={(e) => e.stopPropagation()}>
+        {session && <div onClick={(e) => e.stopPropagation()}>
           <form action={async (formData) => {
     await (isInLibrary ? deleteGame : addGame)(formData);
     router.refresh(); // force a re-fetch if using `useRouter()` from `next/navigation`
@@ -110,7 +110,7 @@ export default function GameCard({ game, onClick, gameList }) {
             <input type="hidden" name="gameId" value={id} />
             <Button isInLibrary={isInLibrary} />
           </form>
-        </div>
+        </div>}
       </div>
     </div>
   );
