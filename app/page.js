@@ -1,14 +1,13 @@
 // pages/index.tsx
 import Image from "next/image";
 import Link from "next/link";
-import HomeImg from "@/Public/homeImage.jpg";
 
 export default function Home() {
   return (
     <div className="min-h-[calc(100vh-5rem)] flex flex-col overflow-hidden">
       <div className="relative min-h-[calc(101vh-5rem)] w-full">
         <Image
-          src={HomeImg}
+          src="/homeImage.jpg"
           alt="Game Background"
           fill
           objectFit="cover"
