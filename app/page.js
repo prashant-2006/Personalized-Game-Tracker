@@ -20,7 +20,7 @@ export default function Home() {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
               Track Your Games Effortlessly
             </h1>
-            <Link href="/games">
+            <Link href="/search">
               <div className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-semibold px-6 py-3 rounded-xl transition duration-300 shadow-lg">
                 Browse Games
               </div>

@@ -69,32 +69,43 @@ export async function deleteGame(formData){
     return data;
 }
 
-export async function updateStatus(formData){
+export async function updateStatus(formData) {
   const gameID = formData.get("gameID");
-  const gameData = {
-    status: formData.get("status"),
-    completed_on: formData.get("completedMonth")+", "+formData.get("completedYear"),
-    notes: formData.get("notes"),
+  const status = formData.get("status");
+  const month = formData.get("completedMonth")?.trim();
+  const year = formData.get("completedYear")?.trim();
+  const notes = formData.get("notes");
+
+  // ✅ Format completed_on cleanly
+  let completed_on = "";
+  if (year) {
+    completed_on = month ? `${month}, ${year}` : `${year}`;
   }
+
   const session = await auth();
   const userId = session?.user?.userID;
 
   const { data, error } = await supabase
-  .from('games')
-  .update(gameData)
-  .eq('game_id', gameID)
-  .eq('user_id', userId)
-  .select();
+    .from("games")
+    .update({
+      status,
+      completed_on,
+      notes,
+    })
+    .eq("game_id", gameID)
+    .eq("user_id", userId)
+    .select();
 
-  if(error){
-    console.error(error);
-    throw new Error(error);
+  if (error) {
+    console.error("Supabase update error:", error);
+    throw new Error(error.message);
   }
+
   revalidatePath(`/profile/library/${gameID}`);
   revalidatePath(`/profile/library/edit/${gameID}`);
   redirect(`/profile/library/${gameID}`);
-  return data;
 }
+
 
 export async function updateUser(formData){
   const userData = {

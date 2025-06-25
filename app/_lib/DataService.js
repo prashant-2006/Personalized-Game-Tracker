@@ -31,15 +31,14 @@ export async function createUser({ email, name, image }) {
   return data;
 }
 
-export async function getGames() {
+export async function getGames({ selectedStatus, selectedYear } = {}) {
   const session = await auth();
   const userId = session?.user?.userID;
-
   if (!userId) return [];
 
   const { data, error } = await supabase
     .from("games")
-    .select("game_id")
+    .select("game_id, status, completed_on")
     .eq("user_id", userId);
 
   if (error) {
@@ -47,8 +46,24 @@ export async function getGames() {
     throw new Error("Could not fetch games");
   }
 
-  return data.map((item) => item.game_id);
+  let filteredData = data;
+
+  // Filter by status
+  if (selectedStatus && selectedStatus !== "All") {
+    filteredData = filteredData.filter((game) => game.status === selectedStatus);
+  }
+
+  // Filter by year from last 4 characters of completed_on string
+  if (selectedYear && selectedYear !== "All Years") {
+    filteredData = filteredData.filter((game) =>
+      game.completed_on?.slice(-4) === selectedYear
+    );
+  }
+
+  return filteredData.map((item) => item.game_id);
 }
+
+
 
 export default async function getGameData(gameID) {
   const session = await auth();

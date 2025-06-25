@@ -108,7 +108,7 @@ export default async function GameDetails({ params }) {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <CalendarIcon className="w-5 h-5 text-blue-400" />
-                  <span>Completed on: {userGame.completed_on || 'Not completed'}</span>
+                  <span>Played/Completed on: {userGame.completed_on || 'Not completed'}</span>
                 </div>
                 <div className="flex items-start gap-2 text-sm">
                   <PencilIcon className="w-5 h-5 text-gray-500 mt-1" />
