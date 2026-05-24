@@ -9,7 +9,7 @@ export default function SignInPage() {
   return (
     // Replaced hardcoded margins with a flex layout that centers perfectly, 
     // and added a subtle radial gradient glow in the background.
-    <div className="min-h-[calc(100vh-70px)] flex items-center justify-center px-4 relative overflow-hidden bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-gray-50 dark:bg-gray-950">
       
       {/* Subtle Background Glow Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/20 dark:bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none"></div>
