@@ -37,8 +37,8 @@ export default function SearchClient({gameList, session}) {
   const showLoader = loading || isRouting;
 
   return (
-    <div className="p-6">
-      <div className="flex mb-4">
+    <div className="p-0">
+      <div className="flex mb-8">
         <input
           type="text"
           placeholder="Search for a game..."

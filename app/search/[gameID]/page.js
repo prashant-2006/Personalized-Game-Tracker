@@ -38,7 +38,7 @@ export default async function GameDetails({ params }) {
   const trailerData = await trailerRes.json();
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 text-gray-900 dark:text-white">
+    <div className="max-w-7xl mx-auto px-4 py-8 text-gray-900 dark:text-white mt-16">
       <Link href="/search" className="inline-flex items-center gap-2 mb-6 text-indigo-500 hover:underline">
         <ArrowLeftIcon className="w-5 h-5" />
         Back

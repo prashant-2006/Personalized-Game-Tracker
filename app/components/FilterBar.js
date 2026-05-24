@@ -21,16 +21,19 @@ export default function FilterBar() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 mb-6 sm:flex-row sm:justify-center">
-      <div className="flex gap-2">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-3xl mx-auto px-1">
+      
+      {/* Premium Segmented Control for Status */}
+      <div className="flex items-center p-1 bg-white/60 dark:bg-gray-900/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl shadow-lg w-full sm:w-auto overflow-hidden">
         {statuses.map((status) => (
           <button
             key={status}
             onClick={() => updateParam('status', status)}
-            className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+            // whitespace-nowrap prevents the text from stacking and ruining the shape!
+            className={`flex-1 sm:flex-none px-2 py-2 sm:px-5 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
               selectedStatus === status
-                ? "bg-indigo-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+                ? "bg-indigo-600 text-white shadow-md transform scale-[1.02]"
+                : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-white/5"
             }`}
           >
             {status}
@@ -38,22 +41,30 @@ export default function FilterBar() {
         ))}
       </div>
 
-      <div className="relative">
+      {/* Glassmorphism Year Dropdown */}
+      <div className="relative w-full sm:w-auto">
         <select
           value={selectedYear}
           onChange={(e) => updateParam('year', e.target.value)}
-          className="appearance-none px-4 py-2 pr-10 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-semibold text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600"
-          >
+          className="w-full appearance-none px-4 py-2.5 pr-10 sm:px-5 sm:py-2.5 sm:pr-12 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-xs sm:text-sm font-semibold text-gray-800 dark:text-gray-200 shadow-lg outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300 cursor-pointer"
+        >
           {years.map((year) => (
-          <option key={year} value={year}>
-            {year}
-          </option>
+            <option 
+              key={year} 
+              value={year} 
+              className="text-gray-900 dark:text-white bg-white dark:bg-gray-900 font-medium"
+            >
+              {year}
+            </option>
           ))}
-          </select>
-          <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
-            <ChevronDown size={16} />
-          </div>
+        </select>
+        
+        {/* Custom Dropdown Arrow */}
+        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400">
+          <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
+        </div>
       </div>
+
     </div>
   );
 }
