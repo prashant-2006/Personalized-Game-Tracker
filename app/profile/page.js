@@ -40,7 +40,7 @@ export default async function Profile() {
             Welcome back, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">{user?.name?.split(" ")?.[0]}</span>
           </h1>
           <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-400 px-2">
-            Here's a quick overview of your digital shelf.
+            Here&apos;s a quick overview of your digital shelf.
           </p>
         </div>
 
