@@ -4,24 +4,34 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex-1 flex flex-col w-full pt-[70px]">
+    <div className="flex-1 flex flex-col w-full pt-[60px]">
       
       <div className="relative flex-1 w-full overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-300">
         
+        {/* 📱 MOBILE IMAGE: Shows on screens smaller than md (768px) */}
+        <Image
+          src="/homeImage2.jpg"
+          alt="Game Background Mobile"
+          fill
+          // Centers the image and hides it on medium screens and up
+          className="block md:hidden object-cover object-center"
+          quality={100}
+          priority
+        />
+
+        {/* 💻 DESKTOP IMAGE: Shows on md screens (768px) and larger */}
         <Image
           src="/homeImage.jpg"
-          alt="Game Background"
+          alt="Game Background Desktop"
           fill
-          className="hidden md:block object-contain object-right"
+          // Anchors top-right and hides it on small screens
+          className="hidden md:block object-cover object-right-top"
           quality={100}
           priority
         />
         
-        {/* RESPONSIVE GRADIENT FIX:
-          - Light Mode: from-white -> via-transparent -> to-transparent (Drops to 0 shade after fading from 30%)
-          - Dark Mode: Maintains the dark gray filter for readability.
-        */}
-        <div className="absolute inset-0 bg-white dark:bg-gray-950 md:bg-transparent dark:md:bg-transparent md:bg-gradient-to-r md:from-white dark:md:from-gray-950 md:from-[30%] md:via-transparent dark:md:via-gray-950/70 md:via-[60%] md:to-transparent dark:md:to-gray-950/15 flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24 transition-colors duration-300">
+        {/* RESPONSIVE GRADIENT OVERLAY */}
+        <div className="absolute inset-0 bg-white/85 dark:bg-gray-950/85 md:bg-transparent dark:md:bg-transparent md:bg-gradient-to-r md:from-white dark:md:from-gray-950 md:from-[30%] md:via-transparent dark:md:via-gray-950/70 md:via-[60%] md:to-transparent dark:md:to-gray-950/15 flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24 transition-colors duration-300">
           
           <div className="max-w-xl md:max-w-2xl flex flex-col items-center md:items-start text-center md:text-left z-10">
             
