@@ -18,7 +18,9 @@ import getGameData from '@/app/_lib/DataService';
 const API_KEY = 'a98780749aad4b9c8897d8bec2152282';
 
 export async function generateMetadata({ params }) {
-  const gameID = params.gameID;
+  // 1. Await the params Promise here
+  const { gameID } = await params;
+  
   const res = await fetch(`https://api.rawg.io/api/games/${gameID}?key=${API_KEY}`);
   const game = await res.json();
   return {
@@ -28,7 +30,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function GameDetails({ params }) {
-  const gameID = params.gameID;
+  // 2. Await the params Promise here
+  const { gameID } = await params;
 
   const res = await fetch(`https://api.rawg.io/api/games/${gameID}?key=${API_KEY}`);
   if (!res.ok) return notFound();
@@ -58,6 +61,7 @@ export default async function GameDetails({ params }) {
             src={game.background_image || '/fallback.jpg'}
             alt={game.name}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw" // Added sizes prop here
             className="object-cover"
           />
         </div>

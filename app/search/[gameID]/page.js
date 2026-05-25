@@ -13,11 +13,13 @@ import {
 
 const API_KEY = 'a98780749aad4b9c8897d8bec2152282';
 
-export async function generateMetadata(props) {
-  const { params } = props;
-  const { gameID } = params;
+export async function generateMetadata({ params }) {
+  // 1. Await the params Promise here
+  const { gameID } = await params;
+  
   const res = await fetch(`https://api.rawg.io/api/games/${gameID}?key=${API_KEY}`);
   const game = await res.json();
+  
   return {
     title: game.name || 'Game Details',
     description: game.description_raw?.slice(0, 150),
@@ -25,7 +27,8 @@ export async function generateMetadata(props) {
 }
 
 export default async function GameDetails({ params }) {
-  const { gameID } = params;
+  // 2. Await the params Promise here
+  const { gameID } = await params;
 
   const res = await fetch(`https://api.rawg.io/api/games/${gameID}?key=${API_KEY}`);
   if (!res.ok) return notFound();
@@ -51,6 +54,7 @@ export default async function GameDetails({ params }) {
             src={game.background_image || '/fallback.jpg'}
             alt={game.name}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw" // Added sizes prop to fix terminal warning
             className="object-cover"
           />
         </div>
