@@ -30,8 +30,9 @@ export default function Home() {
           priority
         />
         
-        {/* RESPONSIVE GRADIENT OVERLAY */}
-        <div className="absolute inset-0 bg-white/85 dark:bg-gray-950/85 md:bg-transparent dark:md:bg-transparent md:bg-gradient-to-r md:from-white dark:md:from-gray-950 md:from-[30%] md:via-transparent dark:md:via-gray-950/70 md:via-[60%] md:to-transparent dark:md:to-gray-950/15 flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24 transition-colors duration-300">
+        {/* CHANGED: Reduced light mode mobile opacity to 30% (bg-white/30) 
+            while keeping dark mode at 60% (dark:bg-gray-950/60). */}
+        <div className="absolute inset-0 bg-white/50 dark:bg-gray-950/60 md:bg-transparent dark:md:bg-transparent md:bg-gradient-to-r md:from-white dark:md:from-gray-950 md:from-[30%] md:via-transparent dark:md:via-gray-950/70 md:via-[60%] md:to-transparent dark:md:to-gray-950/15 flex items-center justify-center md:justify-start px-6 md:px-16 lg:px-24 transition-colors duration-300">
           
           <div className="max-w-xl md:max-w-2xl flex flex-col items-center md:items-start text-center md:text-left z-10">
             
